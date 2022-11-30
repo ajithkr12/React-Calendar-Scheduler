@@ -56,7 +56,6 @@ class WeekView extends Component {
   */
  
   openAddEventModal = (dateStamp, time) => {
-    console.log('open',time)
     time    = moment(parseFloat(time).toFixed(2), 'HH:mm');
     // const start = moment (dateStamp).set ({'hour':time});
     const start = moment (dateStamp).set ({hour:time.get('hour'),minute: time.get('minute')});

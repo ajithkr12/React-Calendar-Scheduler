@@ -94,11 +94,13 @@ export const generateWeekViewCoordinates = (event, startDate) => {
   const end = moment (event.end);
   const duration = moment.duration (end.diff (start));
   const weekStart = moment (startDate);
+  // console.log(start,"--",end,"--",duration,"--",weekStart)
   
 
   // Calculating Top
-  // const top = start.minutes () === 30 ? '50%' : '0%';
-  const top = 0;
+  const top = start.minutes () === 30 ? '100' : '0';
+  console.log("hai..",top)
+  // const top = 0;
 
   // const marginTop = start.minutes () === 30 ? '5%' : '0%';
 
