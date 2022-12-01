@@ -6,7 +6,7 @@ import moment from 'moment';
    * @returns {array} days - All days in the week with date, dateStamp and weekDayName
   */
 export const getAllDaysInTheWeek = (currentDate = moment ()) => {
-  const weekStart = currentDate.clone ().startOf ('week');
+  const weekStart = currentDate.clone ().startOf ('day');
 
   const days = Array.from (Array (7))
     .map ((day, index) => index)
@@ -94,12 +94,13 @@ export const generateWeekViewCoordinates = (event, startDate) => {
   const end = moment (event.end);
   const duration = moment.duration (end.diff (start));
   const weekStart = moment (startDate);
-  // console.log(start,"--",end,"--",duration,"--",weekStart)
+
+  console.log("weekstart = ",startDate);
+  console.log("event start = ",event.start)
   
 
   // Calculating Top
   const top = start.minutes () === 30 ? '100' : '0';
-  console.log("hai..",top)
   // const top = 0;
 
   // const marginTop = start.minutes () === 30 ? '5%' : '0%';
@@ -109,41 +110,64 @@ export const generateWeekViewCoordinates = (event, startDate) => {
   const height = timeFactor * 200;
 
   let left, width;
-  if (weekStart.week () === start.week ()) {
-    const weekDay = start.weekday ();
-    left = (weekDay + 1) * 12.5;
-  }
 
-  if (
-    weekStart.week () === start.week () &&
-    weekStart.week () === end.week ()
-  ) {
-    const daysDiff = duration.days ();
-    width = (daysDiff + 1) * 12.5 - 2;
-  }
+    const a=weekStart.day();
+    const b=start.day();
+    const c=Math.abs(b-a);
+    console.log(c)
+    // if (weekStart.week () === start.week ()) {
+      left = (c+1) * 12.5;
+    // }
 
-  if (weekStart.week () > start.week () && weekStart.week () === end.week ()) {
-    const daysDiff = moment
-      .duration (
-        end.diff (
-          weekStart
-            .startOf ('week')
-            .set ('hours', start.hours ())
-            .set ('minutes', start.minutes ())
-        )
-      )
-      .days ();
-    width = (daysDiff + 1) * 12.5 - 2;
-  }
+  // if (weekStart.week () === start.week ()) {
+  //   const a=weekStart.day();
+  //   const b=start.day();
+  //   const c=b-a;
+  //   console.log("a=",a,'...',"b=",b,"----","c=",c)
+  //   const weekDay = start.weekday ();
+  //   left = (c+1) * 12.5;
+  // }
+// ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+  // if (
+  //   weekStart.week () === start.week () &&
+  //   weekStart.week () === end.week ()
+  // ) {
+  //   const daysDiff = duration.days ();
+  //   width = (daysDiff + 1) * 12.5 - 2;
+  // }
 
-  if (weekStart.week () > start.week ()) {
-    left = 12.5;
-  }
+  // if (weekStart.week () > start.week () && weekStart.week () === end.week ()) {
+  //   const daysDiff = moment
+  //     .duration (
+  //       end.diff (
+  //         weekStart
+  //           .startOf ('week')
+  //           .set ('hours', start.hours ())
+  //           .set ('minutes', start.minutes ())
+  //       )
+  //     )
+  //     .days ();
+  //   width = (daysDiff + 1) * 12.5 - 2;
+  // }
+  // if (weekStart.week () < end.week ()) {
+  //   width = 100 - left;
+  // }
+// gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
 
-  if (weekStart.week () < end.week ()) {
-    width = 100 - left;
-  }
+  // if (weekStart.weekday () < start.weekday ()) {
+  //   // left = 12.5;
+  //   const weekDay = start.weekday ();
+  //   console.log(weekDay)
+  //   left = (weekDay+2) * 3.6;
+  // }
+  // if (weekStart.weekday () > start.weekday ()) {
+  //   // left = 12.5;
+  //   const weekDay = start.weekday ();
+  //   console.log(weekDay)
+  //   left = (weekDay+2) * 3.6;
+  // }
 
+  width=10;
   return {
     top: top + '%',
     left: left + '%',
@@ -167,79 +191,3 @@ export const isTodaysDate = dateStamp => {
     today.day () === dateStamp.day ()
   );
 };
-
-
-// export const times = [
-//   1.00,
-//   1.30,
-//   2,
-//   2.30,
-//   3,
-//   3.30,
-//   4,
-//   4.30,
-//   5,
-//   5.30,
-//   6,
-//   6.30,
-//   7,
-//   7.30,
-//   8,
-//   8.30,
-//   9,
-//   9.30,
-//   10,
-//   10.30,
-//   11,
-//   11.30,
-//   12,
-//   12.30,
-//   13,
-//   13.30,
-//   14,
-//   14.30,
-//   15,
-//   15.30,
-//   16,
-//   16.30,
-//   17,
-//   17.30,
-//   18,
-//   18.30,
-//   19,
-//   19.30,
-//   20,
-//   20.30,
-//   21,
-//   21.30,
-//   22,
-//   22.30,
-//   23,
-//   23.30
-// ];
-
-// export const times = [
-//   1.30,
-//   2,
-//   3,
-//   4,
-//   5,
-//   6,
-//   7,
-//   8,
-//   9,
-//   10,
-//   11,
-//   12,
-//   13,
-//   14,
-//   15,
-//   16,
-//   17,
-//   18,
-//   19,
-//   20,
-//   21,
-//   22,
-//   23,
-// ];

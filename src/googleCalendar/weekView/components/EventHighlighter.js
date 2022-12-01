@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import moment from 'moment';
 import AddEventModal from './AddEventModal';
 import {generateWeekViewCoordinates} from '../../utils';
-import {eventHighlighter} from '../styles';
+import {eventHighlighter,blockHighlighter} from '../styles';
 
 class EventHighlighter extends Component {
   state = {
@@ -71,7 +71,7 @@ class EventHighlighter extends Component {
 
   render () {
     const {showEditEventModal, eventNewStart, eventNewEnd} = this.state;
-    console.log(eventNewStart,"aaaaa",eventNewEnd)
+    const isValid=true;
     return (
       <React.Fragment>
         <AddEventModal
@@ -87,13 +87,12 @@ class EventHighlighter extends Component {
         />
         <div
           onClick={this.openEditEventModal}
-          style={{
-            ...generateWeekViewCoordinates (
-              this.props.event,
-              this.props.startDate
-            ),
-            ...eventHighlighter,
-          }}
+          style={
+                  {
+                    ...generateWeekViewCoordinates (this.props.event,this.props.startDate),
+                    ...eventHighlighter
+                  }
+                }
         >
           {this.props.event.title} <br />
           <span style={{fontSize:12,color: "red"}}>

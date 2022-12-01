@@ -13,6 +13,9 @@ const CalendarEventHandler = (function () {
       ...newEvent,
       startWeek: moment (newEvent.start).week (),
       endWeek: moment (newEvent.end).week (),
+
+      // startWeek: moment(newEvent.start).dayOfYear(),
+      // endWeek: moment(newEvent.end).dayOfYear(),
     };
     if (allEvents[time]) {
       allEvents[time].push (eventWithMeatInfo);

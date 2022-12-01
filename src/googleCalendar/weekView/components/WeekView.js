@@ -16,12 +16,14 @@ class WeekView extends Component {
     eventStart: null,
     eventEnd: null,
   };
-  times=parseFloat(...times).toFixed(2);
+  times=parseFloat(times).toFixed(2);
+  
   /**
    * Sets next week days in the state
   */
   goToNextWeek = () => {
     const dateAfter7Days = moment (this.state.startDate).add (7, 'days');
+
     this.setState ({
       startDate: +dateAfter7Days,
       weekDays: getAllDaysInTheWeek (dateAfter7Days),
@@ -59,7 +61,7 @@ class WeekView extends Component {
     time    = moment(parseFloat(time).toFixed(2), 'HH:mm');
     // const start = moment (dateStamp).set ({'hour':time});
     const start = moment (dateStamp).set ({hour:time.get('hour'),minute: time.get('minute')});
-    console.log('open1',start)
+
     const end = start.clone ().add (30, 'minute');
 
     this.setState ({

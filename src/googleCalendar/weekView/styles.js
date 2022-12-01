@@ -101,6 +101,17 @@ export const eventHighlighter = {
   zIndex: 1,
   cursor: 'pointer',
 };
+export const blockHighlighter = {
+  position: 'absolute',
+  backgroundColor: 'red',
+  border: '2px solid #81cdf2',
+  borderRadius: '4px',
+  color: 'white',
+  padding: '2px 4px',
+  fontSize: '12px',
+  zIndex: 1,
+  cursor: 'pointer',
+};
 export const abc = {
 
   // backgroundColor: '#abc1f7',
